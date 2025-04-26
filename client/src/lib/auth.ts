@@ -14,7 +14,7 @@ export class InspectorOAuthClientProvider implements OAuthClientProvider {
   }
 
   get redirectUrl() {
-    return window.location.origin + "/oauth/callback";
+    return window.location.origin + "/inspector/oauth/callback";
   }
 
   get clientMetadata() {

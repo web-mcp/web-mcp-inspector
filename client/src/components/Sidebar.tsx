@@ -125,7 +125,7 @@ const Sidebar = ({
                 <SelectValue placeholder="Select transport type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="stdio">STDIO</SelectItem>
+                <SelectItem value="stdio" disabled>STDIO</SelectItem>
                 <SelectItem value="sse">SSE</SelectItem>
                 <SelectItem value="streamable-http">Streamable HTTP</SelectItem>
               </SelectContent>

@@ -16,6 +16,7 @@
   ],
   "scripts": {
     "dev": "vite --port 6274",
+    "lib": "vite build -c vite.library.ts",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview --port 6274",
@@ -46,10 +47,13 @@
     "serve-handler": "^6.1.6",
     "tailwind-merge": "^2.5.3",
     "tailwindcss-animate": "^1.0.7",
+    "vite-plugin-dts": "^2.1.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@esbuild/win32-x64": "^0.25.3",
     "@eslint/js": "^9.11.1",
+    "@rollup/rollup-win32-x64-msvc": "^4.40.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@types/jest": "^29.5.14",

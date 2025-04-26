@@ -88,7 +88,7 @@ const App = () => {
       (localStorage.getItem("lastTransportType") as
         | "stdio"
         | "sse"
-        | "streamable-http") || "stdio"
+        | "streamable-http") || "sse"
     );
   });
   const [logLevel, setLogLevel] = useState<LoggingLevel>("debug");
@@ -471,7 +471,7 @@ const App = () => {
     setStdErrNotifications([]);
   };
 
-  if (window.location.pathname === "/oauth/callback") {
+  if (window.location.pathname === "/inspector/oauth/callback") {
     const OAuthCallback = React.lazy(
       () => import("./components/OAuthCallback"),
     );

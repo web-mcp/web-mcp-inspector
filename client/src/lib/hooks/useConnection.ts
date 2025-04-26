@@ -34,7 +34,7 @@ import { auth } from "@modelcontextprotocol/sdk/client/auth.js";
 import { InspectorOAuthClientProvider } from "../auth";
 import packageJson from "../../../package.json";
 import {
-  getMCPProxyAddress,
+  // getMCPProxyAddress,
   getMCPServerRequestMaxTotalTimeout,
   resetRequestTimeoutOnProgress,
 } from "@/utils/configUtils";
@@ -232,7 +232,9 @@ export function useConnection({
 
   const checkProxyHealth = async () => {
     try {
-      const proxyHealthUrl = new URL(`${getMCPProxyAddress(config)}/health`);
+      const url = new URL(sseUrl)
+      // const proxyHealthUrl = new URL(`${getMCPProxyAddress(config)}/health`);
+      const proxyHealthUrl = new URL(`${url.origin}/health`);
       const proxyHealthResponse = await fetch(proxyHealthUrl);
       const proxyHealth = await proxyHealthResponse.json();
       if (proxyHealth?.status !== "ok") {
@@ -240,7 +242,7 @@ export function useConnection({
       }
     } catch (e) {
       console.error("Couldn't connect to MCP Proxy Server", e);
-      throw e;
+      // throw e;
     }
   };
 
@@ -278,14 +280,15 @@ export function useConnection({
       setConnectionStatus("error-connecting-to-proxy");
       return;
     }
-    const mcpProxyServerUrl = new URL(`${getMCPProxyAddress(config)}/sse`);
-    mcpProxyServerUrl.searchParams.append("transportType", transportType);
+    // const mcpProxyServerUrl = new URL(`${getMCPProxyAddress(config)}/sse`);
+    const mcpProxyServerUrl = new URL(sseUrl);
+    // mcpProxyServerUrl.searchParams.append("transportType", transportType);
     if (transportType === "stdio") {
       mcpProxyServerUrl.searchParams.append("command", command);
       mcpProxyServerUrl.searchParams.append("args", args);
       mcpProxyServerUrl.searchParams.append("env", JSON.stringify(env));
     } else {
-      mcpProxyServerUrl.searchParams.append("url", sseUrl);
+      // mcpProxyServerUrl.searchParams.append("url", sseUrl);
     }
 
     try {
