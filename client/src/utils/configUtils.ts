@@ -24,3 +24,21 @@ export const getMCPServerRequestMaxTotalTimeout = (
 ): number => {
   return config.MCP_REQUEST_MAX_TOTAL_TIMEOUT.value as number;
 };
+
+export const getSseUrl = () => {
+  if(globalThis.location) {
+    const p = new URLSearchParams(location.search)
+    const url = p.get("url")
+    if(url) return url
+  }
+  return localStorage.getItem("lastSseUrl") || "http://localhost:3001/sse";
+}
+
+export const getTransportType = () => {
+  if(globalThis.location) {
+    const p = new URLSearchParams(location.search)
+    const type = p.get("type")
+    if(type && ['sse', 'streamable-http'].includes(type)) return type
+  }
+  return localStorage.getItem("lastTransportType") || 'sse'
+}

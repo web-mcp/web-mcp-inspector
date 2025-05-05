@@ -51,7 +51,7 @@ import Sidebar from "./components/Sidebar";
 import ToolsTab from "./components/ToolsTab";
 import { DEFAULT_INSPECTOR_CONFIG } from "./lib/constants";
 import { InspectorConfig } from "./lib/configurationTypes";
-import { getMCPProxyAddress } from "./utils/configUtils";
+import { getMCPProxyAddress, getSseUrl, getTransportType } from "./utils/configUtils";
 
 const CONFIG_LOCAL_STORAGE_KEY = "inspectorConfig_v1";
 
@@ -79,16 +79,16 @@ const App = () => {
   });
 
   const [sseUrl, setSseUrl] = useState<string>(() => {
-    return localStorage.getItem("lastSseUrl") || "http://localhost:3001/sse";
+    return getSseUrl()
   });
   const [transportType, setTransportType] = useState<
     "stdio" | "sse" | "streamable-http"
   >(() => {
     return (
-      (localStorage.getItem("lastTransportType") as
+      (getTransportType() as
         | "stdio"
         | "sse"
-        | "streamable-http") || "sse"
+        | "streamable-http")
     );
   });
   const [logLevel, setLogLevel] = useState<LoggingLevel>("debug");
