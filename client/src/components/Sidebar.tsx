@@ -12,6 +12,7 @@ import {
   Settings,
   HelpCircle,
   RefreshCwOff,
+  Copy,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,7 +30,7 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import { InspectorConfig } from "@/lib/configurationTypes";
 import { ConnectionStatus } from "@/lib/constants";
-import useTheme from "../lib/useTheme";
+import useTheme from "../lib/hooks/useTheme";
 import { version } from "../../../package.json";
 import {
   Tooltip,
@@ -101,7 +102,7 @@ const Sidebar = ({
       <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
         <div className="flex items-center">
           <h1 className="ml-2 text-lg font-semibold">
-            MCP Inspector v{version}
+            Online MCP Inspector v{version}
           </h1>
         </div>
       </div>
@@ -125,7 +126,9 @@ const Sidebar = ({
                 <SelectValue placeholder="Select transport type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="stdio" disabled>STDIO</SelectItem>
+                <SelectItem value="stdio" disabled>
+                  STDIO
+                </SelectItem>
                 <SelectItem value="sse">SSE</SelectItem>
                 <SelectItem value="streamable-http">Streamable HTTP</SelectItem>
               </SelectContent>
@@ -607,7 +610,7 @@ const Sidebar = ({
               asChild
             >
               <a
-                href="https://github.com/modelcontextprotocol/inspector"
+                href="https://github.com/web-mcp/online-mcp-inspector"
                 target="_blank"
                 rel="noopener noreferrer"
               >
